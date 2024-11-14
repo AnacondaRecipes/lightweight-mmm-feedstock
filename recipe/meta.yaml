@@ -28,7 +28,7 @@ requirements:
     # TensorFlow 2.10 was the last TensorFlow release that supported GPU on native-Windows.
     # Error: tensorflow 2.10.0 requires libclang, which is not installed.
     # Linux and OSX uses 2.17.0
-    - clang # [win]
+    #- clang # [win]
   host:
     - python
     - pip
@@ -68,7 +68,7 @@ test:
   requires:
     - pip
     - pytest
-    - setuptools
+    - clang # [win]
 
 about:
   home: https://github.com/google/lightweight_mmm

@@ -23,6 +23,7 @@ requirements:
   build: 
     - patch # [not win]
     - m2-patch  # [win]
+    - clang # [win]
   host:
     - python
     - pip
@@ -51,8 +52,10 @@ test:
     - lightweight_mmm
   commands:
     - pip check
+    - pytest -v lightweight_mmm
   requires:
     - pip
+    - pytest
     - setuptools
 
 about:

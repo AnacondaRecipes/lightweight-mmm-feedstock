@@ -6,18 +6,20 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/lightweight_mmm-{{ version }}.tar.gz
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 3f6562476f08dc30e10bdee569784782edaf79724ee34b64a525ce55e2fbf01c
 
 build:
-  noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
+  skip: True # [py<39 or py>311 or s390x]
+  
 
 requirements:
   host:
     - python
     - pip
+    - wheel
   run:
     - python
     - absl-py
@@ -25,7 +27,8 @@ requirements:
     - immutabledict >=2.0.0
     - jax >=0.3.18
     - jaxlib >=0.3.18
-    - matplotlib-base ==3.6.1
+    # matplotlib-base ==3.6.1 in the requirements but not avaliable in conda main channel.
+    - matplotlib-base ==3.6.2
     - numpy >=1.23
     - numpyro >=0.9.2
     - pandas >=1.1.5
@@ -48,6 +51,10 @@ about:
   summary: Package for Media-Mix-Modelling
   license: Apache-2.0
   license_file: LICENSE
+  license_family: Apache
+  dev_url: https://github.com/google/lightweight_mmm/tree/v0.1.9
+  doc_url: https://lightweight-mmm.readthedocs.io/
+  description: LMMM is a python library that helps organisations understand and optimise marketing spend across media channels.
 
 extra:
   recipe-maintainers:

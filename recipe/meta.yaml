@@ -12,7 +12,8 @@ source:
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
-  skip: True # [py<39 or py>311 or s390x]
+  # https://github.com/google/lightweight_mmm/blob/v0.1.9/setup.py#L74
+  skip: True # [py<39 or py>=311 or s390x]
   
 
 requirements:
@@ -20,6 +21,7 @@ requirements:
     - python
     - pip
     - wheel
+    - setuptools
   run:
     - python
     - absl-py
@@ -45,6 +47,7 @@ test:
     - pip check
   requires:
     - pip
+    - setuptools
 
 about:
   home: https://github.com/google/lightweight_mmm

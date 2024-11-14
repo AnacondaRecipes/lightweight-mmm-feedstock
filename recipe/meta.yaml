@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/google/{{ name }}/archive/refs/tags/v{{ version }}.tar.gz
+  url: https://github.com/google/{{ name.replace('-', '_') }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 3e82b076400cd00eda80be20f23d4a1e3b6192846fbc6d9151d3155f61aeac13
   patches:
     - 0001-increase-mathplot-version.patch

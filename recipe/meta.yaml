@@ -48,6 +48,8 @@ requirements:
     - tensorflow >=2.7.2
 
 test:
+  source_files:
+    - lightweight_mmm
   imports:
     - lightweight_mmm
   commands:

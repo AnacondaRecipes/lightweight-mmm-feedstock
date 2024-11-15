@@ -81,3 +81,6 @@ about:
 extra:
   recipe-maintainers:
     - snegireff
+  skip-lints:
+    # Disabled for WIN. Won't rebuild tensorflow 2.10 due to the associated difficulty.
+    - missing_pip_check

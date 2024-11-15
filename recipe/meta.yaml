@@ -45,10 +45,10 @@ requirements:
     - seaborn ==0.11.1
     - scikit-learn
     - statsmodels >=0.13.0
-    # Windows use not use latest tensorflow.
+    # Windows is not using latest tensorflow.
     # https://www.tensorflow.org/install/pip#windows-native
     # TensorFlow 2.10 was the last TensorFlow release that supported GPU on native-Windows.
-    # Linux and OSX uses 2.17.0
+    # Linux and OSX uses 2.17.0, WIN 2.10.0
     - tensorflow >=2.7.2
 
 test:
@@ -57,7 +57,7 @@ test:
   imports:
     - lightweight_mmm
   commands:
-    - pip check
+    - pip check # [not win]
     # Test disabled. lightweight-mmm ticket:
     # TypeError: where() got some positional-only arguments passed as keyword arguments: 'condition, x, y'
     # https://github.com/google/lightweight_mmm/issues/321
@@ -67,8 +67,6 @@ test:
   requires:
     - pip
     - pytest
-    # Fix for the error: tensorflow 2.10.0 requires libclang, which is not installed.
-    - libclang # [win]
 
 about:
   home: https://github.com/google/lightweight_mmm

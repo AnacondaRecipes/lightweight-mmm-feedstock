@@ -1,0 +1,16 @@
+diff --git a/lightweight_mmm/preprocessing_test.py b/lightweight_mmm/preprocessing_test.py
+index cd77bf1..d318f65 100644
+--- a/lightweight_mmm/preprocessing_test.py
++++ b/lightweight_mmm/preprocessing_test.py
+@@ -704,8 +704,9 @@ class PreprocessingTest(parameterized.TestCase):
+         extra_features_data=extra_features)
+ 
+     for i, expected_correlation in enumerate(updated_expected_correlations):
+-      pd.testing.assert_frame_equal(
+-          correlations[i], expected_correlation, atol=1e-3, check_dtype=False)
++        print(f"Actual correlation for index {i}:\n{correlations[i]}")
++        print(f"Expected correlation for index {i}:\n{expected_correlation}")
++        pd.testing.assert_frame_equal(correlations[i], expected_correlation, atol=1e-3, check_dtype=False)
+ 
+   @parameterized.named_parameters([
+       dict(

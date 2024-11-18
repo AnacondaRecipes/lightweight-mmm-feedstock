@@ -10,6 +10,7 @@ source:
   sha256: 3e82b076400cd00eda80be20f23d4a1e3b6192846fbc6d9151d3155f61aeac13
   patches:
     - 0001-increase-mathplot-version.patch
+    - 0002-JAX-pass-the-condition-x-y.patch
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -58,15 +59,14 @@ test:
     - lightweight_mmm
   commands:
     - pip check # [not win]
-    # Test disabled. lightweight-mmm ticket:
-    # TypeError: where() got some positional-only arguments passed as keyword arguments: 'condition, x, y'
-    # https://github.com/google/lightweight_mmm/issues/321
-    # Tests works only with (jax==0.4.20 jaxlib==0.4.20 scipy==1.12.0)
-    # https://github.com/google/lightweight_mmm/issues/321#issuecomment-2195724411
-    #- pytest -v lightweight_mmm
+    # Tests fixed with:
+    # 0002-JAX-pass-the-condition-x-y.patch
+    # https://github.com/google/lightweight_mmm/commit/24cca5836bdb2958b7962e044dcc0e60c4b361ae#diff-20f1187732ccb6c06f8c742717c4eb0125126a06da882b5d88ab94102227f7ccR76
+    - pytest -v lightweight_mmm
   requires:
     - pip
     - pytest
+    - scipy <=1.12.0
 
 about:
   home: https://github.com/google/lightweight_mmm

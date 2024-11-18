@@ -11,7 +11,7 @@ source:
   patches:
     - 0001-increase-mathplot-version.patch
     - 0002-JAX-pass-the-condition-x-y.patch
-    - 0003-Add-logs.patch # [linux-aarch64]
+    - 0003-Add-logs.patch
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation

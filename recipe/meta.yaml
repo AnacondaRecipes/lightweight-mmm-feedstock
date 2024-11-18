@@ -67,7 +67,7 @@ test:
     - pip
     - pytest
     - scipy <=1.12.0
-    - pandas ==1.1.5 # [linux and aarch64]
+    - pandas <2.0.0 # [linux and aarch64]
 
 about:
   home: https://github.com/google/lightweight_mmm

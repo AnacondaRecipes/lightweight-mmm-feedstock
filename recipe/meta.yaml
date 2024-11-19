@@ -9,8 +9,9 @@ source:
   url: https://github.com/google/{{ name.replace('-', '_') }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 3e82b076400cd00eda80be20f23d4a1e3b6192846fbc6d9151d3155f61aeac13
   patches:
-    - 0001-increase-mathplot-version.patch
+    - 0001-Increase-matplotlib-version.patch
     - 0002-JAX-pass-the-condition-x-y.patch
+    - 0003-Disable-plot-show.patch # Set non-interactive backend
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation

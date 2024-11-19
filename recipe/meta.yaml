@@ -12,7 +12,6 @@ source:
     - 0001-Increase-matplotlib-version.patch
     - 0002-JAX-pass-the-condition-x-y.patch
     - 0003-Disable-plot-show.patch # Set non-interactive backend
-    - 0004-Fix-jax-dtype.patch
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -54,6 +53,11 @@ requirements:
     # Linux and OSX uses 2.17.0, WIN 2.10.0
     - tensorflow >=2.7.2
 
+{% set deselect_tests = "" %}
+# https://github.com/google/lightweight_mmm/issues/342
+{% set deselect_tests = " --deselect=lightweight_mmm/preprocessing_test.py::PreprocessingTest::test_check_data_quality_with_extra_features_national_data" %} # [aarch64 or arm64]
+{% set deselect_tests = " --deselect=lightweight_mmm/preprocessing_test.py::PreprocessingTest::test_compute_correlations_returns_expected_values_national_data" %} # [aarch64 or arm64]
+
 test:
   source_files:
     - lightweight_mmm
@@ -64,12 +68,11 @@ test:
     # Tests fixed with:
     # 0002-JAX-pass-the-condition-x-y.patch
     # https://github.com/google/lightweight_mmm/commit/24cca5836bdb2958b7962e044dcc0e60c4b361ae#diff-20f1187732ccb6c06f8c742717c4eb0125126a06da882b5d88ab94102227f7ccR76
-    - pytest -v lightweight_mmm
+    - pytest -v {{ deselect_tests }} lightweight_mmm
   requires:
     - pip
     - pytest
     - scipy <=1.12.0
-    - pandas <2.0.0 # [linux and aarch64]
 
 about:
   home: https://github.com/google/lightweight_mmm

@@ -12,7 +12,7 @@ source:
     - 0001-Increase-matplotlib-version.patch
     - 0002-JAX-pass-the-condition-x-y.patch
     - 0003-Disable-plot-show.patch # Set non-interactive backend
-    - 0004-Increase-the-tolerance-on-arm64.patch # [aarch64 and arm64]
+    - 0004-Fix-jax-array-dtype.patch # [aarch64 and arm64]
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation

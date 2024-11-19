@@ -1,0 +1,53 @@
+From b5bcfa1f46403b775aec962878bc35784e20c0d4 Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Tue, 19 Nov 2024 14:31:51 +0200
+Subject: [PATCH] Fix fax dtype
+
+---
+ lightweight_mmm/preprocessing_test.py | 11 ++++++-----
+ 1 file changed, 6 insertions(+), 5 deletions(-)
+
+diff --git a/lightweight_mmm/preprocessing_test.py b/lightweight_mmm/preprocessing_test.py
+index cd77bf1..ca09890 100644
+--- a/lightweight_mmm/preprocessing_test.py
++++ b/lightweight_mmm/preprocessing_test.py
+@@ -636,8 +636,8 @@ class PreprocessingTest(parameterized.TestCase):
+   ])
+   def test_compute_correlations_returns_expected_values(
+       self, features, target, expected_correlations):
+-    features = jnp.array(features)
+-    target = jnp.array(target)
++    features = jnp.array(features, dtype=jnp.float64)
++    target = jnp.array(target, dtype=jnp.float64)
+     feature_names = [f"feature_{i}" for i in range(features.shape[1])]
+ 
+     correlations = preprocessing._compute_correlations(
+@@ -684,9 +684,9 @@ class PreprocessingTest(parameterized.TestCase):
+       ])
+   def test_check_data_quality_with_extra_features(self, features, target,
+                                                   expected_correlations):
+-    media_data = jnp.array(features)[:, :2]
++    media_data = jnp.array(features, dtype=jnp.float64)[:, :2]
+     costs = np.ones(media_data.shape[1])
+-    extra_features = jnp.array(features)[:, 2:]
++    extra_features = jnp.array(features, dtype=jnp.float64)[:, 2:]
+     extra_features_transformer = {
+         "feature_2": "extra_feature_0",
+         "feature_3": "extra_feature_1",
+@@ -699,7 +699,7 @@ class PreprocessingTest(parameterized.TestCase):
+ 
+     correlations, _, _, _ = preprocessing.check_data_quality(
+         media_data=media_data,
+-        target_data=jnp.array(target),
++        target_data=jnp.array(target, dtype=jnp.float64),
+         cost_data=costs,
+         extra_features_data=extra_features)
+ 
+@@ -934,3 +934,4 @@ class PreprocessingTest(parameterized.TestCase):
+ 
+ if __name__ == "__main__":
+   absltest.main()
++
+-- 
+2.34.1
+

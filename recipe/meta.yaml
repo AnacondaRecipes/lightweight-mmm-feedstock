@@ -56,7 +56,7 @@ requirements:
 {% set deselect_tests = "" %}
 # https://github.com/google/lightweight_mmm/issues/342
 {% set deselect_tests = " --deselect=lightweight_mmm/preprocessing_test.py::PreprocessingTest::test_check_data_quality_with_extra_features_national_data" %} # [aarch64 or arm64]
-{% set deselect_tests = " --deselect=lightweight_mmm/preprocessing_test.py::PreprocessingTest::test_compute_correlations_returns_expected_values_national_data" %} # [aarch64 or arm64]
+{% set deselect_tests = deselect_tests + " --deselect=lightweight_mmm/preprocessing_test.py::PreprocessingTest::test_compute_correlations_returns_expected_values_national_data" %} # [aarch64 or arm64]
 
 test:
   source_files:

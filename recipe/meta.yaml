@@ -20,7 +20,7 @@ build:
   # https://github.com/google/lightweight_mmm/blob/v0.1.9/setup.py#L74
   # py3.9 skipped. Reason: jax and jaxlib 0.4.35 not support py3.9.
   # py3.12 skipped. Reason: matplotlib-base=3.6.2 is not avaliable for py3.12 in conda.
-  skip: True # [py<39 or py>311 or s390x]
+  skip: True # [py<310 or py>311 or s390x]
   
 
 requirements:

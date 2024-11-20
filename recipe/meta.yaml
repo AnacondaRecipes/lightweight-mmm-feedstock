@@ -11,7 +11,7 @@ source:
   patches:
     - patches/0001-Increase-matplotlib-version.patch
     - patches/0002-JAX-pass-the-condition-x-y.patch
-    - patches/0003-Disable-plot-show.patch # Set non-interactive backend
+    - patches/0003-Disable-plot-show.patch  # Set non-interactive backend
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
@@ -21,7 +21,7 @@ build:
   # py3.9 skipped. Reason: jax and jaxlib 0.4.35 not support py3.9.
   # py3.12 skipped. Reason: matplotlib-base=3.6.2 is not avaliable for py3.12 in conda.
   # win + py310 only works. Reason: Tensorflow available only for py3.10
-  skip: True # [py<310 or py>=312 or s390x or(win and py>310)]
+  skip: True  # [py<310 or py>=312 or s390x or (win and py>310)]
 
 requirements:
   build: 
@@ -66,7 +66,7 @@ test:
   imports:
     - lightweight_mmm
   commands:
-    - pip check # [not win]
+    - pip check  # [not win]
     # Tests fixed with:
     # 0002-JAX-pass-the-condition-x-y.patch
     # https://github.com/google/lightweight_mmm/commit/24cca5836bdb2958b7962e044dcc0e60c4b361ae#diff-20f1187732ccb6c06f8c742717c4eb0125126a06da882b5d88ab94102227f7ccR76

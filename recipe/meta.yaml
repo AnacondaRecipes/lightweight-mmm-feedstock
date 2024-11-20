@@ -9,21 +9,23 @@ source:
   url: https://github.com/google/{{ name.replace('-', '_') }}/archive/refs/tags/v{{ version }}.tar.gz
   sha256: 3e82b076400cd00eda80be20f23d4a1e3b6192846fbc6d9151d3155f61aeac13
   patches:
-    - 0001-Increase-matplotlib-version.patch
-    - 0002-JAX-pass-the-condition-x-y.patch
-    - 0003-Disable-plot-show.patch # Set non-interactive backend
+    - patches/0001-Increase-matplotlib-version.patch
+    - patches/0002-JAX-pass-the-condition-x-y.patch
+    - patches/0003-Disable-plot-show.patch # Set non-interactive backend
 
 build:
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
   # Supported versions
   # https://github.com/google/lightweight_mmm/blob/v0.1.9/setup.py#L74
-  skip: True # [py<310 or py>=311 or s390x]
+  # py3.9 skipped. Reason: jax and jaxlib 0.4.35 not support py3.9.
+  # py3.12 skipped. Reason: matplotlib-base=3.6.2 is not avaliable for py3.12 in conda.
+  skip: True # [py<39 or py>311 or s390x]
   
 
 requirements:
   build: 
-    - patch # [not win]
+    - patch  # [not win]
     - m2-patch  # [win]
   host:
     - python
@@ -89,4 +91,4 @@ extra:
     - snegireff
   skip-lints:
     # Disabled for WIN. Won't rebuild tensorflow 2.10 due to the associated difficulty.
-    - missing_pip_check
+    - missing_pip_check  # [win]

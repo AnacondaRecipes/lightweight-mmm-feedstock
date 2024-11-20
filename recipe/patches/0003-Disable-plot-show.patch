@@ -1,0 +1,24 @@
+From 81b5f013ead733fc20a31bd852c06d30f0662aa3 Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Tue, 19 Nov 2024 12:03:36 +0200
+Subject: [PATCH] Disable plot show
+
+---
+ lightweight_mmm/plot_test.py | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/lightweight_mmm/plot_test.py b/lightweight_mmm/plot_test.py
+index 0aec453..a311726 100644
+--- a/lightweight_mmm/plot_test.py
++++ b/lightweight_mmm/plot_test.py
+@@ -20,6 +20,7 @@ from absl.testing import absltest
+ from absl.testing import parameterized
+ import jax.numpy as jnp
+ import matplotlib
++matplotlib.use('Agg')
+ import matplotlib.pyplot as plt
+ import numpy as np
+ import numpyro.distributions as dist
+-- 
+2.34.1
+

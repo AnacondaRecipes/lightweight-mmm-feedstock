@@ -1,0 +1,32 @@
+From c7a2f2a3d187190af5338443be5dee75858279bb Mon Sep 17 00:00:00 2001
+From: Andrii Osipov <aosipov@anaconda.com>
+Date: Tue, 19 Nov 2024 12:35:58 +0200
+Subject: [PATCH] Increase matplotlib version
+
+---
+ requirements/requirements.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/requirements/requirements.txt b/requirements/requirements.txt
+index 614ed83..645890f 100644
+--- a/requirements/requirements.txt
++++ b/requirements/requirements.txt
+@@ -17,7 +17,7 @@ arviz>=0.11.2
+ immutabledict>=2.0.0
+ jax>=0.3.18
+ jaxlib>=0.3.18
+-matplotlib==3.6.1
++matplotlib==3.6.2
+ numpy>=1.23
+ numpyro>=0.9.2
+ pandas>=1.1.5
+@@ -25,4 +25,4 @@ scipy
+ seaborn==0.11.1
+ scikit-learn
+ statsmodels>=0.13.0
+-tensorflow>=2.7.2
+\ No newline at end of file
++tensorflow>=2.7.2
+-- 
+2.34.1
+
